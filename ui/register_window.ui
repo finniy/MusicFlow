@@ -126,7 +126,7 @@ QPushButton:pressed {
    <item>
     <layout class="QHBoxLayout" name="buttonLayout">
      <item>
-      <widget class="QPushButton" name="login_button">
+      <widget class="QPushButton" name="register_button">
        <property name="minimumSize">
         <size>
          <width>90</width>
@@ -134,12 +134,12 @@ QPushButton:pressed {
         </size>
        </property>
        <property name="text">
-        <string>Войти</string>
+        <string>Зарегистрироваться</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="go_to_register">
+      <widget class="QPushButton" name="go_to_login">
        <property name="minimumSize">
         <size>
          <width>90</width>
@@ -147,7 +147,7 @@ QPushButton:pressed {
         </size>
        </property>
        <property name="text">
-        <string>Перейти на регистрацию</string>
+        <string>Перейти на вход</string>
        </property>
       </widget>
      </item>
