@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MusicFlow — Плеер</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #121212;
+    color: #FFFFFF;
+    font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+QTabWidget::pane {
+    border: 1px solid #333;
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    background: #1E1E1E;
+    border: 1px solid #333;
+    padding: 8px 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: #FFFFFF;
+}
+
+QTabBar::tab:selected {
+    background: #3B82F6;
+    color: #FFFFFF;
+}
+
+QTabBar::tab:hover {
+    background: #2563EB;
+}
+
+QPushButton {
+    background-color: #3B82F6;
+    border-radius: 6px;
+    padding: 6px;
+    color: white;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #2563EB;
+}
+
+QPushButton:pressed {
+    background-color: #1D4ED8;
+}
+
+QLineEdit {
+    background-color: #1E1E1E;
+    border: 2px solid #333;
+    border-radius: 6px;
+    padding: 6px;
+    color: #FFFFFF;
+}
+
+QLabel {
+    color: #FFFFFF;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+
+      <!-- Вкладка Рекомендации -->
+      <widget class="QWidget" name="recommendTab">
+       <attribute name="title">
+        <string>Рекомендации</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="recommendLayout">
+        <item>
+         <widget class="QLabel" name="currentRecommendationLabel">
+          <property name="text">
+           <string>Выберите песню</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignHCenter|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="playRandomButton">
+          <property name="text">
+           <string>Воспроизвести случайную песню</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <!-- Вкладка Избранное -->
+      <widget class="QWidget" name="favoritesTab">
+       <attribute name="title">
+        <string>Избранное</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="favoritesLayout">
+        <item>
+         <widget class="QListWidget" name="favoritesList"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="playFavoriteButton">
+          <property name="text">
+           <string>Воспроизвести выбранную песню</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <!-- Вкладка Загрузка песен -->
+      <widget class="QWidget" name="uploadTab">
+       <attribute name="title">
+        <string>Загрузка песен</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="uploadLayout">
+        <item>
+         <widget class="QLineEdit" name="songNameInput">
+          <property name="placeholderText">
+           <string>Название песни</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="chooseAvatarButton">
+          <property name="text">
+           <string>Выбрать аватар</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="avatarPathLabel">
+          <property name="text">
+           <string></string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="chooseFileButton">
+          <property name="text">
+           <string>Выбрать файл песни</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="filePathLabel">
+          <property name="text">
+           <string></string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="uploadButton">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="uploadStatus">
+          <property name="text">
+           <string></string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
