@@ -2,6 +2,7 @@ import sys
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox
 
+from app.windows.main_window import MainWindow
 from app.windows.register_window import RegisterWindow
 from app.database.cruds.users_crud import get_user_by_username
 from app.database.session import session_local
@@ -44,7 +45,10 @@ class LoginWindow(QWidget):
             QMessageBox.warning(self, "Ошибка", "Пользователь не найден")
             return
 
-        print(f"Успешный вход: {username}")
+        # --- Открываем главное окно ---
+        self.main_window = MainWindow(current_user=user)
+        self.main_window.show()
+        self.close()
 
     def open_register_window(self):
         self.hide()

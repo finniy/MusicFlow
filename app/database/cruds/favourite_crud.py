@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app.database.models import Favorite, Song
 
-def add_to_favorites(db: Session, user_id: int, song_id: int) -> Favorite:
+def add_to_favourites(db: Session, user_id: int, song_id: int) -> Favorite:
     """Добавить песню в избранное"""
     fav = Favorite(user_id=user_id, song_id=song_id)
     db.add(fav)
@@ -10,7 +10,7 @@ def add_to_favorites(db: Session, user_id: int, song_id: int) -> Favorite:
     return fav
 
 
-def remove_from_favorites(db: Session, user_id: int, song_id: int) -> bool:
+def remove_from_favourites(db: Session, user_id: int, song_id: int) -> bool:
     """Удалить песню из избранного"""
     fav = db.query(Favorite).filter_by(user_id=user_id, song_id=song_id).first()
     if fav:
@@ -20,7 +20,7 @@ def remove_from_favorites(db: Session, user_id: int, song_id: int) -> bool:
     return False
 
 
-def get_user_favorites(db: Session, user_id: int) -> list:
+def get_user_favourites(db: Session, user_id: int) -> list:
     """Получить все избранные песни пользователя"""
     return (
         db.query(Song).join(Favorite, Favorite.song_id == Song.id)

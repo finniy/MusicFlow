@@ -2,6 +2,7 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QMessageBox
 from PyQt6.QtCore import pyqtSignal
 
+from app.windows.main_window import MainWindow
 from app.database.cruds.users_crud import create_user, get_user_by_username
 from app.database.session import session_local
 from app.utils.security import hash_password
@@ -40,8 +41,13 @@ class RegisterWindow(QWidget):
                 return
 
             hashed = hash_password(password)
-            create_user(db, username, hashed)
+            new_user = create_user(db, username, hashed)  # создаем пользователя и получаем объект
             QMessageBox.information(self, "Успех", "Регистрация прошла успешно!")
+
+            # Открываем главное окно
+            self.main_window = MainWindow(current_user=new_user)
+            self.main_window.show()
+            self.close()
 
     def handle_go_login(self):
         self.close()
