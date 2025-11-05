@@ -46,7 +46,7 @@ class LoginWindow(QWidget):
             return
 
         # --- Открываем главное окно ---
-        self.main_window = MainWindow(current_user=user)
+        self.main_window = MainWindow(current_user_id=user.id)
         self.main_window.show()
         self.close()
 

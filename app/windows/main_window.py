@@ -7,9 +7,9 @@ import sys
 import random
 
 class MainWindow(QMainWindow):
-    def __init__(self, current_user):
+    def __init__(self, current_user_id: int):
         super().__init__()
-        self.current_user = current_user
+        self.current_user_id = current_user_id
         self.initUI()
 
     def initUI(self):
@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
             self.recommendations = get_all_songs(db)
 
         # --- Вкладка Избранное ---
-        self.playFavoriteButton.clicked.connect(self.play_favorite)
+        self.playFavoriteButton.clicked.connect(self.play_favorite)                       
         self.load_favorites()
 
         # --- Вкладка Загрузка песен ---
@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
     def load_favorites(self):
         self.favoritesList.clear()
         with session_local() as db:
-            favorites = get_user_favourites(db, CURRENT_USER_ID)
+            favorites = get_user_favourites(db, self.current_user_id)
             for song in favorites:
                 self.favoritesList.addItem(QListWidgetItem(song.title))
 
