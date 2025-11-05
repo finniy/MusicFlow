@@ -1,3 +1,4 @@
+from typing import List
 from sqlalchemy.orm import Session
 from app.database.models import Favorite, Song
 
@@ -20,10 +21,15 @@ def remove_from_favourites(db: Session, user_id: int, song_id: int) -> bool:
     return False
 
 
-def get_user_favourites(db: Session, user_id: int) -> list:
+def get_user_favourites(db: Session, user_id: int) -> List[Song]:
     """Получить все избранные песни пользователя"""
     return (
         db.query(Song).join(Favorite, Favorite.song_id == Song.id)
         .filter(Favorite.user_id == user_id)
         .all()
     )
+
+
+def is_in_favourites(db: Session, user_id: int, song_id: int) -> bool:
+    """Проверить, находится ли песня в избранном пользователя."""
+    return db.query(Favorite).filter_by(user_id=user_id, song_id=song_id).first() is not None

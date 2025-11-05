@@ -1,27 +1,35 @@
+from typing import Optional, List
 from sqlalchemy.orm import Session
 
 from app.database.models import Song
 
 
-def create_song(db: Session, song_name: str, song_path: str, avatar_path: str) -> Song:
-    """Создание новой песни"""
-    session = Song(
-        title=song_name,
-        file_path=song_path,
-        cover_path=avatar_path,
+def create_song(
+    db: Session,
+    title: str,
+    file_path: str,
+    cover_path: str,
+    artist_id: Optional[int] = None,
+) -> Song:
+    """Создание новой песни."""
+    song = Song(
+        title=title,
+        file_path=file_path,
+        cover_path=cover_path,
+        artist_id=artist_id,
     )
-    db.add(session)
+    db.add(song)
     db.commit()
-    db.refresh(session)
-    return session
+    db.refresh(song)
+    return song
 
 
-def get_song_by_id(db: Session, song_id: int) -> Song | None:
+def get_song_by_id(db: Session, song_id: int) -> Optional[Song]:
     """Получить песню по ID"""
     return db.query(Song).filter(Song.id == song_id).first()
 
 
-def get_all_songs(db: Session) -> list[Song]:
+def get_all_songs(db: Session) -> List[Song]:
     """Получить все песни"""
     return db.query(Song).all()
 

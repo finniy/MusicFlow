@@ -32,5 +32,6 @@ class Song(Base):
     title = Column(String)
     file_path = Column(String)
     cover_path = Column(String)
+    artist_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
 
     favorited_by = relationship("Favorite", back_populates="song")
