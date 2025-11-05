@@ -15,14 +15,17 @@ class LoginWindow(QWidget):
         super().__init__()
         self.initUI()
 
-    def initUI(self):
+    def initUI(self) -> None:
         uic.loadUi("ui/login_window.ui", self)
         self.setWindowTitle("MusicFlow — Авторизация")
 
         self.login_button.clicked.connect(self.handle_login)
         self.go_to_register.clicked.connect(self.open_register_window)
 
-    def handle_login(self):
+    def handle_login(self) -> None:
+        """
+        Обрабатывает вход пользователя в систему.
+        """
         username = self.login_table.text().strip()
         password = self.password_table.text().strip()
 
@@ -45,18 +48,23 @@ class LoginWindow(QWidget):
             QMessageBox.warning(self, "Ошибка", "Пользователь не найден")
             return
 
-        # --- Открываем главное окно ---
         self.main_window = MainWindow(current_user_id=user.id)
         self.main_window.show()
         self.close()
 
-    def open_register_window(self):
+    def open_register_window(self) -> None:
+        """
+        Открывает окно регистрации.
+        """
         self.hide()
         self.register_window = RegisterWindow()
         self.register_window.show()
         self.register_window.back_to_login.connect(self.show_again)
 
-    def show_again(self):
+    def show_again(self) -> None:
+        """
+        Возвращает окно входа после регистрации.
+        """
         self.show()
 
 

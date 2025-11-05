@@ -9,6 +9,7 @@ session_local = sessionmaker(autoflush=False, autocommit=False, bind=engine)
 
 Base = declarative_base()
 
+
 def get_db():
     """
     Генератор для предоставления сессии базы данных.

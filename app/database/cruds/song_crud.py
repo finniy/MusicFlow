@@ -5,11 +5,11 @@ from app.database.models import Song
 
 
 def create_song(
-    db: Session,
-    title: str,
-    file_path: str,
-    cover_path: str,
-    artist_id: Optional[int] = None,
+        db: Session,
+        title: str,
+        file_path: str,
+        cover_path: str,
+        artist_id: Optional[int] = None,
 ) -> Song:
     """Создание новой песни."""
     song = Song(

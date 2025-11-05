@@ -16,14 +16,17 @@ class RegisterWindow(QWidget):
         super().__init__()
         self.initUI()
 
-    def initUI(self):
+    def initUI(self) -> None:
         uic.loadUi("ui/register_window.ui", self)
         self.setWindowTitle("MusicFlow — Регистрация")
 
         self.register_button.clicked.connect(self.handle_register)
         self.go_to_login.clicked.connect(self.handle_go_login)
 
-    def handle_register(self):
+    def handle_register(self) -> None:
+        """
+        Обрабатывает регистрацию нового пользователя.
+        """
         username = self.login_table.text().strip()
         password = self.password_table.text().strip()
 
@@ -41,14 +44,16 @@ class RegisterWindow(QWidget):
                 return
 
             hashed = hash_password(password)
-            new_user = create_user(db, username, hashed)  # создаем пользователя и получаем объект
+            new_user = create_user(db, username, hashed)
             QMessageBox.information(self, "Успех", "Регистрация прошла успешно!")
 
-            # Открываем главное окно
             self.main_window = MainWindow(current_user_id=new_user.id)
             self.main_window.show()
             self.close()
 
-    def handle_go_login(self):
+    def handle_go_login(self) -> None:
+        """
+        Возвращает пользователя к окну входа.
+        """
         self.close()
         self.back_to_login.emit()

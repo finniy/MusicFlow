@@ -2,6 +2,7 @@ from typing import List
 from sqlalchemy.orm import Session
 from app.database.models import Favorite, Song
 
+
 def add_to_favourites(db: Session, user_id: int, song_id: int) -> Favorite:
     """Добавить песню в избранное"""
     fav = Favorite(user_id=user_id, song_id=song_id)

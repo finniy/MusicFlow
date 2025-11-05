@@ -4,7 +4,6 @@ from typing import Type
 from app.database.models import User
 
 
-
 def create_user(db: Session, username: str, password: str) -> User:
     """
     Создает нового пользователя в базе данных.
