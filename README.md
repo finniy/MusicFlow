@@ -41,11 +41,13 @@ PyQt6, SQLAlchemy, SQLite и современного UI в стиле Spotify.
 ```
 .
 |   main.py
-|   database.db
+|   .gitignore
 |   README.md
+|   requirements.txt
+|
 |
 +---app
-|   |   __init__.py
+|   |
 |   |
 |   +---database
 |   |   |   __init__.py
