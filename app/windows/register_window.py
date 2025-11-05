@@ -45,7 +45,7 @@ class RegisterWindow(QWidget):
             QMessageBox.information(self, "Успех", "Регистрация прошла успешно!")
 
             # Открываем главное окно
-            self.main_window = MainWindow(current_user=new_user)
+            self.main_window = MainWindow(current_user_id=new_user.id)
             self.main_window.show()
             self.close()
 
