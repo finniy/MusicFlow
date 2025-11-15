@@ -17,9 +17,22 @@ class RegisterWindow(QWidget):
         self.initUI()
 
     def initUI(self) -> None:
-        uic.loadUi("ui/register_window.ui", self)
-        self.setWindowTitle("MusicFlow — Регистрация")
+        import os
 
+        # Поиск UI файла
+        ui_paths = [
+            "ui/register_window.ui",
+            "../ui/register_window.ui"
+        ]
+
+        for ui_path in ui_paths:
+            if os.path.exists(ui_path):
+                uic.loadUi(ui_path, self)
+                break
+        else:
+            raise FileNotFoundError("Не найден файл register_window.ui")
+
+        self.setWindowTitle("MusicFlow — Регистрация")
         self.register_button.clicked.connect(self.handle_register)
         self.go_to_login.clicked.connect(self.handle_go_login)
 

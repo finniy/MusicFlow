@@ -1,3 +1,4 @@
+import os
 import sys
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox
@@ -16,9 +17,21 @@ class LoginWindow(QWidget):
         self.initUI()
 
     def initUI(self) -> None:
-        uic.loadUi("ui/login_window.ui", self)
-        self.setWindowTitle("MusicFlow — Авторизация")
+        # Поиск UI файла
+        ui_paths = [
+            'ui/login_window.ui',
+            '../ui/login_window.ui',
+            os.path.join(os.path.dirname(__file__), '../ui/login_window.ui')
+        ]
 
+        for ui_path in ui_paths:
+            if os.path.exists(ui_path):
+                uic.loadUi(ui_path, self)
+                break
+        else:
+            raise FileNotFoundError("Не найден файл login_window.ui")
+
+        self.setWindowTitle("MusicFlow — Авторизация")
         self.login_button.clicked.connect(self.handle_login)
         self.go_to_register.clicked.connect(self.open_register_window)
 

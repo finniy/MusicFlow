@@ -49,8 +49,20 @@ class MainWindow(QMainWindow):
     def load_ui(self) -> None:
         """Загрузка интерфейса и установка начальных параметров."""
         self.setWindowTitle("MusicFlow — Плеер")
-        ui_path = os.path.join(self.base_dir, "ui", "main_window.ui")
-        uic.loadUi(ui_path, self)
+
+        # Поиск UI файла
+        ui_paths = [
+            "ui/main_window.ui",
+            "../ui/main_window.ui"
+        ]
+
+        for ui_path in ui_paths:
+            if os.path.exists(ui_path):
+                uic.loadUi(ui_path, self)
+                break
+        else:
+            ui_path = os.path.join(self.base_dir, "ui", "main_window.ui")
+            uic.loadUi(ui_path, self)
 
         self.volumeSlider.setValue(50)
         self.audio_output.setVolume(0.5)
